@@ -1,1 +1,12 @@
-export const White = 'rgba(255,255,255, 0.9)';
+export const White = 'rgba(255,255,255, 0.9)'; //card
+export const Primary = 'rgba(40, 122, 229, 1)';
+export const DarkBlue = 'rgba(0, 37, 88, 1)';
+export const DarkGrey = 'rgba(191, 191, 191, 1)'; //bottom navbar text/icon
+export const Grey = 'rgba(204, 211, 221, 1)'; //border, line, textinput
+export const LightGrey = 'rgba(247, 247, 247, 1)'; //background
+export const Green = 'rgba(58, 214, 71, 1)';
+export const LightGreen = 'rgba(164, 209, 102, 1)';
+export const Yellow = 'rgba(255, 205, 39, 1)';
+export const Orange = 'rgba(255, 97, 39, 1)';
+// export const Pink = 'rgba(229, 57, 75, 1)';
+export const Red = 'rgba(255, 29, 29, 1)';
