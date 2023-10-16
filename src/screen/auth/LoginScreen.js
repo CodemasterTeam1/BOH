@@ -8,8 +8,14 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {DarkBlue, DarkGrey, LightGrey, Primary, White} from '../styles/Colour';
-import ModalSelectArea from '../component/modal/SelectAreaModal';
+import {
+  DarkBlue,
+  DarkGrey,
+  LightGrey,
+  Primary,
+  White,
+} from '../../styles/Colour';
+import ModalSelectArea from '../../component/modal/SelectAreaModal';
 
 const LoginScreen = () => {
   const [text, setText] = React.useState('');
