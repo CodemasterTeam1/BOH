@@ -13,9 +13,7 @@ const Routing = () => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-        }}>
-        <Stack.Screen name="login" component={LoginScreen} />
-      </Stack.Navigator>
+        }}></Stack.Navigator>
     </NavigationContainer>
   );
 };
