@@ -45,7 +45,7 @@ const LoginScreen = () => {
         </View>
         <Image
           style={styles.logo}
-          source={require('../assets/images/logo-toyota.png')}
+          source={require('../../assets/images/logo-toyota.png')}
         />
         <View style={styles.inputContainer}>
           <Icon style={styles.icon} name="envelope" size={15} solid />

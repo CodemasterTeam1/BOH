@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {White} from '../styles/Colour';
-import LoginScreen from '../screen/LoginScreen';
+import LoginScreen from '../screen/auth/LoginScreen';
 
 const Routing = () => {
   const Stack = createNativeStackNavigator();
