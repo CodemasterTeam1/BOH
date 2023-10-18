@@ -5,6 +5,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import LoginScreen from '../screen/auth/LoginScreen';
 import BottomNavbar from './stack/Button/BottomNavbar';
+import {White} from '../styles/Colour';
+import LoginScreen from '../screen/LoginScreen';
+import CekHarga from '../screen/CekHarga';
 
 const Routing = () => {
   const Stack = createNativeStackNavigator();
@@ -15,6 +18,7 @@ const Routing = () => {
           headerShown: false,
         }}>
         <Stack.Screen name="BottomNavbar" component={BottomNavbar} />
+        <Stack.Screen name="Cekharga" component={CekHarga} />
       </Stack.Navigator>
     </NavigationContainer>
   );
