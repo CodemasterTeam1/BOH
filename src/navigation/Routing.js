@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import LoginScreen from '../screen/auth/LoginScreen';
 import BottomNavbar from './stack/Button/BottomNavbar';
+import BeliMobilScreen from '../screen/new_car/BeliMobilScreen';
 
 const Routing = () => {
   const Stack = createNativeStackNavigator();
@@ -14,7 +15,7 @@ const Routing = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="BottomNavbar" component={BottomNavbar} />
+        <Stack.Screen name="BeliMobilScreen" component={BeliMobilScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
