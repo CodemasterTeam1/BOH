@@ -3,6 +3,7 @@ import React from 'react';
 import {DarkBlue, Grey, LightGrey} from '../../styles/Colour';
 import RiwayatCard from '../../component/sections/RiwayatCard';
 import DaftarBookingCard from '../../component/sections/DaftarBookingCard';
+import InsentifCard from '../../component/sections/InsentifCard';
 
 const DetailInsentifScreen = () => {
   const riwayat = [
@@ -39,9 +40,22 @@ const DetailInsentifScreen = () => {
     },
   ];
 
+  const insentif = {
+    tanggal: 'Sen, 17 Sep 2018 - 10:30',
+    insentif: 'Rp 1.000.000',
+    booking: '2',
+    type: 'create',
+  };
+
   return (
     <View style={styles.screen}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <InsentifCard
+          tanggal={insentif.tanggal}
+          insentif={insentif.insentif}
+          booking={insentif.booking}
+          type={insentif.type}
+        />
         <View style={styles.headerRiwayat}>
           <Text style={styles.headerText}>Riwayat</Text>
         </View>
