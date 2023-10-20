@@ -11,7 +11,6 @@ import {
   Image,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import handleShare from '../../utils/HandleShare';
 import TitleHeader from '../../component/global/TitleHeader';
 
 import {White, DarkBlue, Grey, LightGrey, Primary} from '../../styles/Colour';
