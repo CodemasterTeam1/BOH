@@ -1,3 +1,5 @@
+import {Share} from 'react-native';
+
 export default handleShare = () => {
   // Logika berbagi konten
   Share.share({

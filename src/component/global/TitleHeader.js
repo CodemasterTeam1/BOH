@@ -77,6 +77,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 21,
     backgroundColor: White,
     paddingVertical: 15,
+    shadowColor: DarkBlue,
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.3,
+    elevation: 5,
   },
   titleHeader: {
     flexDirection: 'row',

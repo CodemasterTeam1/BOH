@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import LoginScreen from '../screen/auth/LoginScreen';
 import BottomNavbar from './stack/Button/BottomNavbar';
+import TradeInScreen from '../screen/trade_in/TradeInScreen';
 
 const Routing = () => {
   const Stack = createNativeStackNavigator();
@@ -14,7 +15,7 @@ const Routing = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="BottomNavbar" component={BottomNavbar} />
+        <Stack.Screen name="ToolsTradeIn" component={TradeInScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
