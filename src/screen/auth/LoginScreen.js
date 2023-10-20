@@ -16,10 +16,12 @@ import {
   White,
 } from '../../styles/Colour';
 import ModalSelectArea from '../../component/modal/SelectAreaModal';
+import UserApi from '../../data/remote/apiservice/UserApi';
+import {useDispatch, useSelector} from 'react-redux';
 
-const LoginScreen = () => {
-  const [text, setText] = React.useState('');
-  const [pass, setPass] = React.useState('');
+const LoginScreen = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedArea, setSelectedArea] = useState(null);
 
@@ -30,11 +32,43 @@ const LoginScreen = () => {
   ];
 
   const handleLogin = () => {
-    if (text && pass) {
+    if (email && pass) {
       setIsModalVisible(true);
     } else {
       alert('Login gagal. Mohon isi alamat email dan password.');
     }
+  };
+
+  const login = async () => {
+    const user = {
+      email: email,
+      password: pass,
+    };
+
+    const res = await UserApi.Login(user);
+    console.log('Data Login: ', res);
+    if (res.code === 200) {
+      setIsModalVisible(true);
+      addLoggedUser(res);
+    } else {
+      loginErrorToast;
+    }
+  };
+
+  const loginErrorToast = () => {
+    ToastAndroid.show('LoginError', ToastAndroid.SHORT);
+  };
+
+  const dispatch = useDispatch();
+  const {user} = useSelector(state => state.user);
+  const addLoggedUser = res => {
+    console.log('res: ', res);
+    var dataUser = [...user];
+    const data = {
+      dataUser: res,
+    };
+    dataUser.push(data);
+    dispatch({type: 'LOGIN', data: dataUser});
   };
 
   return (
@@ -53,8 +87,8 @@ const LoginScreen = () => {
             style={styles.input}
             placeholder="Alamat Email"
             label="Email"
-            value={text}
-            onChangeText={text => setText(text)}
+            value={email}
+            onChangeText={text => setEmail(text)}
             keyboardType="email-address"
           />
         </View>
@@ -72,17 +106,18 @@ const LoginScreen = () => {
         <Text style={styles.reset} onPress={() => {}}>
           Reset Password
         </Text>
-        <TouchableOpacity onPress={handleLogin}>
+        <TouchableOpacity onPress={() => login()}>
           <Text style={styles.login}>LOGIN</Text>
         </TouchableOpacity>
       </View>
       <ModalSelectArea
         isVisible={isModalVisible}
         data={cities}
-        onClose={() => setIsModalVisible(false)}
+        // onClose={() => setIsModalVisible(false)}
         onContinue={selected => {
           setSelectedArea(selected);
           setIsModalVisible(false);
+          navigation.navigate('ToolsTradeIn');
         }}
       />
       {/* {selectedArea && <Text>Anda memilih kota: {selectedArea.namaKota}</Text>} */}

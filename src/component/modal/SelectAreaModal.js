@@ -41,7 +41,7 @@ const ModalSelectArea = ({isVisible, data, onClose, onContinue}) => {
             style={styles.button}
             onPress={() => {
               onContinue(selectedArea);
-              onClose();
+              // onClose();
             }}>
             <Text style={styles.buttonText}>LANJUTKAN</Text>
           </TouchableOpacity>

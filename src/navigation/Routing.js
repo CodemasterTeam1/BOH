@@ -15,6 +15,7 @@ const Routing = () => {
         screenOptions={{
           headerShown: false,
         }}>
+        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="ToolsTradeIn" component={TradeInScreen} />
       </Stack.Navigator>
     </NavigationContainer>
