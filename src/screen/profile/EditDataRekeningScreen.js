@@ -8,10 +8,12 @@ import {
   ToastAndroid,
 } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import handleShare from '../../utils/HandleShare';
+import TitleHeader from '../../component/global/TitleHeader';
 
 import {White, DarkBlue, Grey, LightGrey, Primary} from '../../styles/Colour';
 
-const EditDataRekening = () => {
+const EditDataRekeningScreen = () => {
   const [bank, setBank] = useState('BCA');
   const [namaPemilik, setNamaPemilik] = useState('');
   const [noRekening, setNoRekening] = useState('');
@@ -41,6 +43,12 @@ const EditDataRekening = () => {
 
   return (
     <View style={styles.screen}>
+      <TitleHeader
+        title="Edit Data Rekening"
+        onBack={() => navigation.goBack()}
+        share={null}
+        isSearchBar={false}
+      />
       <View style={styles.container3}>
         <View style={styles.contText3}>
           <Text style={styles.title}>Data Rekening</Text>
@@ -163,4 +171,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditDataRekening;
+export default EditDataRekeningScreen;

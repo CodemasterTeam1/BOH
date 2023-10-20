@@ -11,6 +11,8 @@ import {
   Image,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import handleShare from '../../utils/HandleShare';
+import TitleHeader from '../../component/global/TitleHeader';
 
 import {White, DarkBlue, Grey, LightGrey, Primary} from '../../styles/Colour';
 
@@ -57,6 +59,12 @@ const EditDataDiriScreen = () => {
 
   return (
     <View style={styles.screen}>
+      <TitleHeader
+        title="Edit Data Diri"
+        onBack={() => navigation.goBack()}
+        share={null}
+        isSearchBar={false}
+      />
       <View style={styles.container3}>
         <View style={styles.contText3}>
           <Text style={styles.title}>Data Diri</Text>
