@@ -23,7 +23,12 @@ import Tab from '../../component/sections/TabToolsTradeIn';
 const TradeInScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <TitleHeader title="Tools Trade In" onBack={() => navigation.goBack()} />
+      <TitleHeader
+        title="Tools Trade In"
+        onBack={() => navigation.goBack()}
+        share={null}
+        isSearchBar={false}
+      />
       <View style={styles.content}>
         <Text>TR-092018-246</Text>
         <Text style={styles.textDate}>Sen, 17 Sep 2018 - 10.30</Text>
