@@ -17,7 +17,7 @@ import {
 } from '../../styles/Colour';
 import ModalSelectArea from '../../component/modal/SelectAreaModal';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation, route}) => {
   const [text, setText] = React.useState('');
   const [pass, setPass] = React.useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -77,6 +77,7 @@ const LoginScreen = () => {
         </TouchableOpacity>
       </View>
       <ModalSelectArea
+        navigation={navigation}
         isVisible={isModalVisible}
         data={cities}
         onClose={() => setIsModalVisible(false)}

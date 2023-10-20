@@ -10,7 +10,14 @@ import {
 import {handleSelectArea} from '../../utils/SelectArea';
 import {DarkBlue, DarkGrey, Grey, Primary, White} from '../../styles/Colour';
 
-const ModalSelectArea = ({isVisible, data, onClose, onContinue}) => {
+const ModalSelectArea = ({
+  isVisible,
+  data,
+  onClose,
+  onContinue,
+  navigation,
+  route,
+}) => {
   const [selectedArea, setSelectedArea] = useState(null);
 
   return (
@@ -42,6 +49,7 @@ const ModalSelectArea = ({isVisible, data, onClose, onContinue}) => {
             onPress={() => {
               onContinue(selectedArea);
               onClose();
+              navigation.navigate('BottomNavbar');
             }}>
             <Text style={styles.buttonText}>LANJUTKAN</Text>
           </TouchableOpacity>
