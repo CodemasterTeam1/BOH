@@ -111,6 +111,7 @@ const LoginScreen = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <ModalSelectArea
+        navigation={navigation}
         isVisible={isModalVisible}
         data={cities}
         // onClose={() => setIsModalVisible(false)}

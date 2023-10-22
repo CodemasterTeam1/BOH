@@ -8,7 +8,6 @@ import {
   ToastAndroid,
 } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import handleShare from '../../utils/HandleShare';
 import TitleHeader from '../../component/global/TitleHeader';
 
 import {White, DarkBlue, Grey, LightGrey, Primary} from '../../styles/Colour';

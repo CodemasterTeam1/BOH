@@ -2,13 +2,13 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import HomeNavigation from '../HomeNavigation';
-import TrackingNavigation from '../TrackingNavigation';
-import HistoryNavigation from '../HistoryNavigation';
-import IncentiveNavigation from '../IncentiveNavigation';
-import ProfileNavigation from '../ProfileNavigation';
+import HomeNavigation from './HomeNavigation';
+import TrackingNavigation from './TrackingNavigation';
+import HistoryNavigation from './HistoryNavigation';
+import IncentiveNavigation from './IncentiveNavigation';
+import ProfileNavigation from './ProfileNavigation';
 
-import {White, DarkBlue, Grey} from '../../../styles/Colour';
+import {White, DarkBlue, Grey} from '../../styles/Colour';
 
 function TabMenu({isFocused, label}) {
   const icon = iconType(label);
@@ -27,15 +27,15 @@ function TabMenu({isFocused, label}) {
 
 function iconType(label) {
   if (label === 'Home') {
-    return require('../../../assets/icons/home_ic.png');
+    return require('../../assets/icons/home_ic.png');
   } else if (label === 'Tracking') {
-    return require('../../../assets/icons/tracking_ic.png');
+    return require('../../assets/icons/tracking_ic.png');
   } else if (label === 'Riwayat') {
-    return require('../../../assets/icons/riwayat_ic.png');
+    return require('../../assets/icons/riwayat_ic.png');
   } else if (label === 'Insentif') {
-    return require('../../../assets/icons/insentif_ic.png');
+    return require('../../assets/icons/insentif_ic.png');
   } else {
-    return require('../../../assets/icons/profil_ic.png');
+    return require('../../assets/icons/profil_ic.png');
   }
 }
 
