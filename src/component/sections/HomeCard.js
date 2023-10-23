@@ -28,9 +28,9 @@ const HomeCard = ({kode, tanggal, mobil, nama, role, type}) => {
   } else if (type === 'request') {
     statusText = 'Sedang Dalam Request';
     statusStyles = styles.request;
-  } else {
+  } else if (type == 'newapproval') {
     statusText = 'New Approval';
-    statusStyles = styles.defaultStatus;
+    statusStyles = styles.newapproval;
   }
 
   return (
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   role: {
-    color: Grey,
+    color: DarkGrey,
     fontSize: 12,
   },
   statuscon: {
@@ -145,6 +145,14 @@ const styles = StyleSheet.create({
   },
   request: {
     backgroundColor: DarkBlue,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+  },
+  newapproval: {
+    backgroundColor: Primary,
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
