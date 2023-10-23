@@ -59,30 +59,32 @@ export default TabTracking = () => {
     ),
     newCar: () => (
       <View>
-        <HomeCard
-          kode="TR-092018-246"
-          tanggal="Sen, 17 Sep 2018 - 10:30"
-          mobil="Avanza G 2.0"
-          nama="Handoko"
-          role="Salesman"
-          type="newapproval"
-        />
-        <HomeCard
-          kode="TR-092018-246"
-          tanggal="Sen, 17 Sep 2018 - 10:30"
-          mobil="Avanza G 2.0"
-          nama="Handoko"
-          role="Salesman"
-          type="newapproval"
-        />
-        <HomeCard
-          kode="TR-092018-246"
-          tanggal="Sen, 17 Sep 2018 - 10:30"
-          mobil="Avanza G 2.0"
-          nama="Handoko"
-          role="Salesman"
-          type="newapproval"
-        />
+        <ScrollView>
+          <HomeCard
+            kode="TR-092018-246"
+            tanggal="Sen, 17 Sep 2018 - 10:30"
+            mobil="Avanza G 2.0"
+            nama="Handoko"
+            role="Salesman"
+            type="newapproval"
+          />
+          <HomeCard
+            kode="TR-092018-246"
+            tanggal="Sen, 17 Sep 2018 - 10:30"
+            mobil="Avanza G 2.0"
+            nama="Handoko"
+            role="Salesman"
+            type="newapproval"
+          />
+          <HomeCard
+            kode="TR-092018-246"
+            tanggal="Sen, 17 Sep 2018 - 10:30"
+            mobil="Avanza G 2.0"
+            nama="Handoko"
+            role="Salesman"
+            type="newapproval"
+          />
+        </ScrollView>
       </View>
     ),
   });

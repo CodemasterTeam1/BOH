@@ -112,7 +112,6 @@ const HomeScreen = () => {
           <Icon name="sliders" size={20} color={Primary} />
         </TouchableOpacity>
       </View>
-
       <TabHome />
     </View>
   );
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     height: 310,
-    marginBottom: -26,
+    marginBottom: -40,
     padding: 16,
   },
   tabInfo: {
