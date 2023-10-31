@@ -13,6 +13,8 @@ import ProfileNavigation from './stack/ProfileNavigation';
 import TradeInNavigation from './stack/TradeInNavigation';
 import NewCarNavigation from './stack/NewCarNavigation';
 
+import HasilCekHargaScreen from '../screen/profile/HasilCekHargaScreen';
+
 const Routing = () => {
   const Stack = createNativeStackNavigator();
   return (
@@ -21,6 +23,7 @@ const Routing = () => {
         screenOptions={{
           headerShown: false,
         }}>
+        <Stack.Screen name="HasilCekHarga" component={HasilCekHargaScreen} />
         <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
         <Stack.Screen name="BottomNavbar" component={BottomNavbar} />
         <Stack.Screen name="HomeNavigation" component={HomeNavigation} />
