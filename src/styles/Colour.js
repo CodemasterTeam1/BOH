@@ -1,4 +1,5 @@
 export const White = 'rgba(255,255,255, 0.9)'; //card
+export const LowWhite = 'rgba(255,255,255, 0.12)';
 export const Putih = 'rgba(255,255,255, 1)';
 export const BlueGrey = 'rgba(204,211,221, 1)';
 export const Primary = 'rgba(40, 122, 229, 1)';
