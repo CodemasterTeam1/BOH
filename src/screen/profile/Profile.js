@@ -10,8 +10,12 @@ import {
 } from 'react-native';
 import {White, Primary, DarkBlue, DarkGrey, Grey} from '../../styles/Colour';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {useSelector} from 'react-redux';
 
 const ProfileScreen = () => {
+  const {user} = useSelector(state => state.user);
+  console.log('user: ', user);
+
   return (
     <View style={styles.container}>
       <ImageBackground

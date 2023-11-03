@@ -63,11 +63,11 @@ const LoginScreen = ({navigation}) => {
   const {user} = useSelector(state => state.user);
   const addLoggedUser = res => {
     console.log('res: ', res);
-    var dataUser = [...user];
-    const data = {
-      dataUser: res,
-    };
-    dataUser.push(data);
+    // var dataUser = [...user];
+    // const data = {
+    //   dataUser: res,
+    // };
+    var dataUser = res;
     dispatch({type: 'LOGIN', data: dataUser});
   };
 
@@ -118,7 +118,7 @@ const LoginScreen = ({navigation}) => {
         onContinue={selected => {
           setSelectedArea(selected);
           setIsModalVisible(false);
-          navigation.navigate('ToolsTradeIn');
+          navigation.navigate('BottomNavbar');
         }}
       />
       {/* {selectedArea && <Text>Anda memilih kota: {selectedArea.namaKota}</Text>} */}
