@@ -23,7 +23,6 @@ const Routing = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="HasilCekHarga" component={HasilCekHargaScreen} />
         <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
         <Stack.Screen name="BottomNavbar" component={BottomNavbar} />
         <Stack.Screen name="HomeNavigation" component={HomeNavigation} />

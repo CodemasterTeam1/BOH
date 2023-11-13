@@ -33,7 +33,8 @@ const LoginScreen = ({navigation}) => {
 
   const handleLogin = () => {
     if (email && pass) {
-      setIsModalVisible(true);
+      setIsModalVisible(false);
+      navigation.navigate('BottomNavbar');
     } else {
       alert('Login gagal. Mohon isi alamat email dan password.');
     }
@@ -48,10 +49,11 @@ const LoginScreen = ({navigation}) => {
     const res = await UserApi.Login(user);
     console.log('Data Login: ', res);
     if (res.code === 200) {
-      setIsModalVisible(true);
+      setIsModalVisible(false);
+      navigation.navigate('BottomNavbar');
       addLoggedUser(res);
     } else {
-      loginErrorToast;
+      loginErrorToast();
     }
   };
 
