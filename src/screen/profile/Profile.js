@@ -10,10 +10,12 @@ import {
 } from 'react-native';
 import {White, Primary, DarkBlue, DarkGrey, Grey} from '../../styles/Colour';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {useState} from 'react';
+import {useSelector} from 'react-redux';
+import {useState} from 'react
 
 const ProfileScreen = () => {
-  const [isLoading, setIsloading] = useState(false);
+  const {user} = useSelector(state => state.user);
+  console.log('user: ', user);
   return (
     <View style={styles.container}>
       {isLoading ? (
