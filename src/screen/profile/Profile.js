@@ -11,94 +11,131 @@ import {
 import {White, Primary, DarkBlue, DarkGrey, Grey} from '../../styles/Colour';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useSelector} from 'react-redux';
-import {useState} from 'react
+import {useIsFocused} from '@react-navigation/native';
+import {useState, useEffect} from 'react';
+import UserApi from '../../data/remote/apiservice/UserApi';
+import LoadingModal from '../../component/modal/LoadingModal';
 
 const ProfileScreen = () => {
   const {user} = useSelector(state => state.user);
-  console.log('user: ', user);
+  const [isLoading, setIsLoading] = useState(false);
+  const isFoccused = useIsFocused();
+  const [userDetail, setUserDetail] = useState({});
+  useEffect(() => {
+    GetUserDetail();
+  }, [isFoccused]);
+
+  useEffect(() => {
+    console.log('updated userDetail:', userDetail);
+  }, [userDetail]);
+
+  const GetUserDetail = async () => {
+    setIsLoading(true);
+    console.log(user.token);
+    const res = await UserApi.GetUserDetail(user.user.id, user.token);
+    console.log(res);
+    if (res.code === 200) {
+      setUserDetail(res.profile);
+      setIsLoading(false);
+    } else {
+      console.log(res);
+      setIsLoading(false);
+    }
+  };
   return (
     <View style={styles.container}>
-      {isLoading ? (
-        <View></View>
-      ) : (
-        <View>
-          <ImageBackground
-            style={styles.image}
-            source={require('../../assets/images/background-profil_ic.png')}>
-            <View style={styles.contImage}>
-              <Image
-                source={require('../../assets/images/profile.jpg')}
-                style={styles.image2}
-              />
-              <View style={styles.icon}>
-                <Icon name="arrow-alt-circle-right" size={25} color={White} />
-              </View>
-            </View>
-            <View style={styles.contText}>
-              <Text style={styles.text}>Setiawan</Text>
-            </View>
-          </ImageBackground>
-          <View style={styles.container2}>
-            <View style={styles.contText2}>
-              <Text style={styles.text2}>Cek Harga Kendaraan</Text>
-            </View>
-            <View style={styles.contIcon}>
-              <Icon name="angle-right" size={22} color={White} />
+      <View>
+        <ImageBackground
+          style={styles.image}
+          source={require('../../assets/images/background-profil_ic.png')}>
+          <View style={styles.contImage}>
+            <Image
+              source={require('../../assets/images/profile.jpg')}
+              style={styles.image2}
+            />
+            <View style={styles.icon}>
+              <Icon name="arrow-alt-circle-right" size={25} color={White} />
             </View>
           </View>
-          <ScrollView>
-            <View style={styles.container3}>
-              <View style={styles.contText3}>
-                <Text style={styles.title}>Data Diri</Text>
-                <Text style={styles.title2}>Edit Data Diri</Text>
-              </View>
-              <View style={styles.line}></View>
-              <Text style={styles.isiText}>Nama Kepala Cabang</Text>
-              <Text style={styles.isiText2}>Setiawan</Text>
-              <Text style={styles.isiText}>No. Telepon</Text>
-              <Text style={styles.isiText2}>081234675</Text>
-              <Text style={styles.isiText}>Tanggal Lahir</Text>
-              <Text style={styles.isiText2}>07-04-1980</Text>
+          <View style={styles.contText}>
+            <Text style={styles.text}>{user.user.name}</Text>
+          </View>
+        </ImageBackground>
+        <View style={styles.container2}>
+          <View style={styles.contText2}>
+            <Text style={styles.text2}>Cek Harga Kendaraan</Text>
+          </View>
+          <View style={styles.contIcon}>
+            <Icon name="angle-right" size={22} color={White} />
+          </View>
+        </View>
+        <ScrollView>
+          <View style={styles.container3}>
+            <View style={styles.contText3}>
+              <Text style={styles.title}>Data Diri</Text>
+              <Text style={styles.title2}>Edit Data Diri</Text>
             </View>
+            <View style={styles.line}></View>
+            <Text style={styles.isiText}>Nama Kepala Cabang</Text>
+            <Text style={styles.isiText2}>{user.user.name ?? '-'}</Text>
+            <Text style={styles.isiText}>No. Telepon</Text>
+            <Text style={styles.isiText2}>{user.user.phone ?? '-'}</Text>
+            <Text style={styles.isiText}>Tanggal Lahir</Text>
+            <Text style={styles.isiText2}>{userDetail.dateOfBirth ?? '-'}</Text>
+          </View>
 
-            <View style={styles.container3}>
-              <View style={styles.contText3}>
-                <Text style={styles.title}>Data Rekening</Text>
-                <Text style={styles.title2}>Edit Data Rekening</Text>
-              </View>
-              <View style={styles.line}></View>
-              <Text style={styles.isiText}>Bank</Text>
-              <Text style={styles.isiText2}>BCA</Text>
-              <Text style={styles.isiText}>Nama Pemilik Rekening</Text>
-              <Text style={styles.isiText2}>Setiawan</Text>
-              <Text style={styles.isiText}>No. Rekening</Text>
-              <Text style={styles.isiText2}>12345678</Text>
+          <View style={styles.container3}>
+            <View style={styles.contText3}>
+              <Text style={styles.title}>Data Rekening</Text>
+              <Text style={styles.title2}>Edit Data Rekening</Text>
             </View>
+            <View style={styles.line}></View>
+            <Text style={styles.isiText}>Bank</Text>
+            <Text style={styles.isiText2}>{userDetail.bankName ?? '-'}</Text>
+            <Text style={styles.isiText}>Nama Pemilik Rekening</Text>
+            <Text style={styles.isiText2}>{user.user.name ?? '-'}</Text>
+            <Text style={styles.isiText}>No. Rekening</Text>
+            <Text style={styles.isiText2}>{userDetail.bankAccNo ?? '-'}</Text>
+          </View>
 
-            <View style={styles.container4}>
-              <View style={styles.contText3}>
-                <Text style={styles.title}>Data Rekening</Text>
-                <Text style={styles.title2}>Edit Data Rekening</Text>
-              </View>
-              <View style={styles.line}></View>
-              <Text style={styles.isiText}>No. KTP</Text>
-              <Text style={styles.isiText2}>123456789012345</Text>
-              <Text style={styles.isiText}>Foto KTP</Text>
+          <View style={styles.container4}>
+            <View style={styles.contText3}>
+              <Text style={styles.title}>Data Rekening</Text>
+              <Text style={styles.title2}>Edit Data Rekening</Text>
+            </View>
+            <View style={styles.line}></View>
+            <Text style={styles.isiText}>No. KTP</Text>
+            <Text style={styles.isiText2}>{userDetail.noKTP ?? '-'}</Text>
+            <Text style={styles.isiText}>Foto KTP</Text>
+            {userDetail.ktp ? (
               <Image
                 source={require('../../assets/images/ktp_img.jpg')}
                 style={styles.ktp}
               />
-              <Text style={styles.isiText}>No. NPWP</Text>
-              <Text style={styles.isiText2}>123456789012345</Text>
-              <Text style={styles.isiText}>Foto NPWP</Text>
+            ) : (
               <Image
-                source={require('../../assets/images/npwp_img.png')}
+                source={require('../../assets/images/default.jpg')}
                 style={styles.ktp}
               />
-            </View>
-          </ScrollView>{' '}
-        </View>
-      )}
+            )}
+            <Text style={styles.isiText}>No. NPWP</Text>
+            <Text style={styles.isiText2}>{userDetail.noNPWP ?? '-'}</Text>
+            <Text style={styles.isiText}>Foto NPWP</Text>
+            {userDetail.npwp ? (
+              <Image
+                source={require('../../assets/images/ktp_img.jpg')}
+                style={styles.ktp}
+              />
+            ) : (
+              <Image
+                source={require('../../assets/images/default.jpg')}
+                style={styles.ktp}
+              />
+            )}
+          </View>
+        </ScrollView>
+      </View>
+      <LoadingModal isloading={isLoading} />
     </View>
   );
 };
@@ -199,7 +236,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   container4: {
-    height: 493,
+    height: 700,
     backgroundColor: White,
     marginTop: 10,
     marginHorizontal: 10,
