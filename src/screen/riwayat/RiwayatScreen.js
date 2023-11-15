@@ -12,8 +12,9 @@ import HomeCard from '../../component/sections/HomeCard';
 import TabTracking from '../../component/sections/TabTracking';
 import TabRiwayat from '../../component/sections/TabRiwayat';
 
-const TrackingScreen = ({navigation}) => {
+const RiwayatScreen = ({navigation}) => {
   const [searchText, setSearchText] = useState('');
+
   return (
     <View style={{backgroundColor: LightGrey, flex: 1}}>
       <View style={{padding: 16, backgroundColor: Primary, marginBottom: -26}}>
@@ -83,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TrackingScreen;
+export default RiwayatScreen;

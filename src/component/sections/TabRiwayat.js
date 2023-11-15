@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import {
   DarkBlue,
@@ -18,88 +18,78 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import HomeCard from './HomeCard';
+import HistoryApi from '../../data/remote/apiservice/HistoryApi';
+import {useSelector} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
 
-export default TabTracking = () => {
+export default TabRiwayat = () => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     {key: 'tradeIn', title: 'Trade In '},
     {key: 'newCar', title: 'New Car'},
   ]);
 
+  useEffect(() => {
+    GetNewCar();
+    GetTradeIn();
+  }, [isFocused]);
+
+  const {user} = useSelector(state => state.user);
+  const [tradeIn, setTradeIn] = useState([]);
+  const [newCar, setNewCar] = useState([]);
+  const isFocused = useIsFocused();
+
+  const GetTradeIn = async () => {
+    // console.log(user.token);
+    const res = await HistoryApi.GetTradeIn(user.token);
+    if (res) {
+      setTradeIn(res);
+    } else {
+      console.log('Error fetching data');
+    }
+  };
+
+  const GetNewCar = async () => {
+    const res1 = await HistoryApi.GetNewCar(user.token);
+    if (res1) {
+      setNewCar(res1);
+    } else {
+      console.log('Error fetching data');
+    }
+  };
+
   const renderScene = SceneMap({
     tradeIn: () => (
       <View>
         <ScrollView style={styles.scrollContainer}>
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="nodeal"
-          />
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="deal"
-          />
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="deal"
-          />
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="deal"
-          />
+          {tradeIn.map((item, index) => (
+            <HomeCard
+              key={index}
+              kode={item.Appraisal.Booking.noBooking}
+              tanggal={item.approvalFinishTime}
+              mobil={item.Appraisal.carName}
+              nama={item.Appraisal.Booking.SalesProfile.name}
+              role="Salesman"
+              type={item.approvalStatus}
+            />
+          ))}
         </ScrollView>
       </View>
     ),
     newCar: () => (
       <View>
         <ScrollView>
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="deal"
-          />
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="nodeal"
-          />
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="deal"
-          />
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="deal"
-          />
+          {newCar.map((item, index) => (
+            <HomeCard
+              key={index}
+              kode={item.noNewCar}
+              tanggal={item.updatedAt}
+              mobil={item.NewCar.carName}
+              nama={item.SalesBranch.BranchHead.name}
+              role={item.SalesBranch.branch}
+              type="Deal"
+            />
+          ))}
         </ScrollView>
       </View>
     ),
