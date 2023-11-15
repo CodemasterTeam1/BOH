@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import {
   DarkBlue,
@@ -18,72 +18,75 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import HomeCard from './HomeCard';
+import {useSelector} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
+import {useState, useEffect} from 'react';
+import HomeApi from '../../data/remote/apiservice/HomeApi';
 
 export default TabTracking = () => {
+  const isFocused = useIsFocused();
+  const {user} = useSelector(state => state.user);
+  const [tradeIn, setTradeIn] = useState([]);
+  const [newCar, setNewCar] = useState([]);
   const [index, setIndex] = useState(0);
+
   const [routes] = useState([
     {key: 'tradeIn', title: 'Trade In '},
     {key: 'newCar', title: 'New Car'},
   ]);
 
+  useEffect(() => {
+    GetTradeIn();
+  }, [isFocused]);
+
+  const GetTradeIn = async () => {
+    const res = await HomeApi.GetTradeIn(user.token);
+    console.log(res);
+    setTradeIn(res);
+  };
+
+  useEffect(() => {
+    GetNewCar();
+  }, [isFocused]);
+
+  const GetNewCar = async () => {
+    const res = await HomeApi.GetNewCar(user.token);
+    console.log(res);
+    setNewCar(res);
+  };
+
   const renderScene = SceneMap({
     tradeIn: () => (
       <View>
         <ScrollView style={styles.scrollContainer}>
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="newapproval"
-          />
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="newapproval"
-          />
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="newapproval"
-          />
+          {tradeIn.map((data, index) => (
+            <HomeCard
+              key={index}
+              kode={data.noNewCar}
+              tanggal={data.createdAt}
+              mobil={data.NewCar.carName}
+              nama={data.SalesBranch.BranchHead.name}
+              role={data.SalesBranch.branch}
+              type={data.approvalStatus}
+            />
+          ))}
         </ScrollView>
       </View>
     ),
     newCar: () => (
       <View>
         <ScrollView>
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="newapproval"
-          />
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="newapproval"
-          />
-          <HomeCard
-            kode="TR-092018-246"
-            tanggal="Sen, 17 Sep 2018 - 10:30"
-            mobil="Avanza G 2.0"
-            nama="Handoko"
-            role="Salesman"
-            type="newapproval"
-          />
+          {newCar.map((data, index) => (
+            <HomeCard
+              key={index}
+              kode={data.noNewCar}
+              tanggal={data.createdAt}
+              mobil={data.NewCar.carName}
+              nama={data.SalesBranch.BranchHead.name}
+              role={data.SalesBranch.branch}
+              type={data.approvalStatus}
+            />
+          ))}
         </ScrollView>
       </View>
     ),
