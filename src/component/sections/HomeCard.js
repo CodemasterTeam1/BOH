@@ -13,28 +13,22 @@ import {
 } from '../../styles/Colour';
 
 const HomeCard = ({kode, tanggal, mobil, nama, role, type}) => {
-  let statusText = '';
   let statusStyles = {};
 
-  if (type === 'diskon') {
-    statusText = 'Request Diskon Sudah Terupdate';
+  if (type === 'Diskon Sudah Terupdate') {
     statusStyles = styles.diskon;
-  } else if (type === 'subsidi') {
-    statusText = 'Request Subsidi Sudah Terupdate';
+  } else if (type === 'Subsidi Sudah Terupdate') {
     statusStyles = styles.subsidi;
-  } else if (type === 'mrp') {
-    statusText = 'Request MRP Sudah Terupdate';
+  } else if (type === 'MRP Sudah Terupdate') {
     statusStyles = styles.mrp;
-  } else if (type === 'request') {
-    statusText = 'Sedang Dalam Request';
+  } else if (type === 'Dalam Proses') {
     statusStyles = styles.request;
-  } else if (type == 'newapproval') {
-    statusText = 'New Approval';
+  } else if (type == 'New Approval') {
     statusStyles = styles.newapproval;
-  } else if (type == 'nodeal') {
-    (statusText = 'No Deal'), (statusStyles = styles.nodeal);
-  } else if (type == 'deal') {
-    (statusText = 'Deal'), (statusStyles = styles.deal);
+  } else if (type == 'No Deal') {
+    statusStyles = styles.nodeal;
+  } else if (type == 'Deal') {
+    statusStyles = styles.deal;
   }
 
   return (
@@ -51,7 +45,7 @@ const HomeCard = ({kode, tanggal, mobil, nama, role, type}) => {
           <Text style={styles.role}>{role}</Text>
         </View>
         <View style={statusStyles}>
-          <Text style={styles.status}>{statusText}</Text>
+          <Text style={styles.status}>{type}</Text>
         </View>
       </View>
     </View>

@@ -6,8 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState} from 'react';
-import HomeCard from '../../component/sections/HomeCard';
+import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   DarkBlue,
@@ -21,8 +20,25 @@ import {
   Yellow,
 } from '../../styles/Colour';
 import TabHome from '../../component/sections/TabHome';
+import {useSelector} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
+import {useState, useEffect} from 'react';
+import HomeApi from '../../data/remote/apiservice/HomeApi';
 
 const HomeScreen = () => {
+  const isFocused = useIsFocused();
+  const {user} = useSelector(state => state.user);
+  const [totalData, setTotalData] = useState({});
+  useEffect(() => {
+    GetTotal();
+  }, [isFocused]);
+
+  const GetTotal = async () => {
+    const res = await HomeApi.GetTotal(user.token);
+    console.log(res);
+    setTotalData(res);
+  };
+
   const [searchText, setSearchText] = useState('');
   return (
     <View style={styles.root}>
@@ -40,7 +56,7 @@ const HomeScreen = () => {
           Home
         </Text>
         <View style={styles.tabInfo}>
-          <Text style={{color: DarkBlue}}>1 Sep -12 September 2020</Text>
+          <Text style={{color: DarkBlue}}>{totalData.mountToDate}</Text>
           <View style={styles.line}></View>
           <View style={styles.tabInfoRow}>
             <View style={styles.tabInfoGrid}>
@@ -52,7 +68,7 @@ const HomeScreen = () => {
                   ]}></View>
                 <Text style={styles.titleText}>Cek harga</Text>
               </View>
-              <Text style={styles.numberText}>32</Text>
+              <Text style={styles.numberText}>{totalData.dealTotal}</Text>
             </View>
             <View style={styles.tabInfoGrid}>
               <View style={styles.tabInfoTitle}>
@@ -63,7 +79,7 @@ const HomeScreen = () => {
                   ]}></View>
                 <Text style={styles.titleText}>Total Apprasial</Text>
               </View>
-              <Text style={styles.numberText}>16</Text>
+              <Text style={styles.numberText}>{totalData.appraisalTotal}</Text>
             </View>
           </View>
           <View style={styles.tabInfoRow}>
@@ -76,7 +92,7 @@ const HomeScreen = () => {
                   ]}></View>
                 <Text style={styles.titleText}>PO</Text>
               </View>
-              <Text style={styles.numberText}>12</Text>
+              <Text style={styles.numberText}>{totalData.noDealTotal}</Text>
             </View>
             <View style={styles.tabInfoGrid}>
               <View style={styles.tabInfoTitle}>
@@ -87,7 +103,7 @@ const HomeScreen = () => {
                   ]}></View>
                 <Text style={styles.titleText}>PO Valid</Text>
               </View>
-              <Text style={styles.numberText}>4</Text>
+              <Text style={styles.numberText}>{totalData.inProcessTotal}</Text>
             </View>
           </View>
         </View>
